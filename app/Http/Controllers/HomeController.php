@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('profile');
     }
+
+    public function apidoc()
+    {
+        return view('apidoc');
+    }
 }

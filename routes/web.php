@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'HomeController@profile')->name('profile');
+    Route::get('/api-documentation', 'HomeController@apidoc')->name('apidoc');
     Route::post('/profile/update/email', 'UserController@email')->name('update-email');
     Route::post('/profile/update/password', 'UserController@password')->name('update-password');
     Route::post('/profile/update/apikey', 'UserController@apikey')->name('update-apikey');
@@ -34,3 +35,4 @@ Route::group(['middleware' => 'auth'], function () {
 //Route untuk API
 
 Route::get('/cuaca','ApiController@cuaca');
+Route::get('/corona','ApiController@corona');

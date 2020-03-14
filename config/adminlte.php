@@ -236,6 +236,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        
         [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
@@ -273,6 +274,22 @@ return [
                     'url'  => '#',
                 ],
             ],
+        ],
+        ['header' => 'MAIN FEATURE'],
+        [
+            'text' => 'API List',
+            'url'  => 'api-documentation',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text'    => 'multilevel',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => '',
+                    'url'  => '#',
+                ],
+            ]
         ],
         ['header' => 'labels'],
         [
