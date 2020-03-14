@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'HomeController@profile')->name('profile');
-    //route api
-    // user edit with proses update  => namewebsite/profile/{nama user}
-    Route::post('/profile/update/email','UserController@email')->name('update-email');
-    Route::get('profile/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
-    Route::patch('profile/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+    Route::post('/profile/update/email', 'UserController@email')->name('update-email');
+    Route::post('/profile/update/password', 'UserController@password')->name('update-password');
+    Route::post('/profile/update/apikey', 'UserController@apikey')->name('update-apikey');
+    Route::patch('/profile',  'UserController@update');
 });
 
 //Route untuk API

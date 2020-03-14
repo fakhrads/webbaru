@@ -56,16 +56,16 @@
                 </div><!-- /.card-header -->
                 <div class="card-body">
                     @if(!empty(Session::get('success')))
-        <div class="alert alert-success"> {{ Session::get('success') }}</div>
-    @endif
-    @if(!empty(Session::get('error')))
-        <div class="alert alert-danger"> {{ Session::get('error') }}</div>
-    @endif
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+                    <div class="alert alert-success"> {{ Session::get('success') }}</div>
+                    @endif
+                    @if(!empty(Session::get('error')))
+                    <div class="alert alert-danger"> {{ Session::get('error') }}</div>
+                    @endif
+                    @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                    @endif
                     <div class="tab-content">
                         <!-- tab email -->
                         <div class="tab-pane active" id="email">
@@ -77,21 +77,21 @@
                                         <input type="text" class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}" id="InputName" placeholder="Name" name="name" value="{{ Auth::user()->name }}">
                                     </div>
                                     @if ($errors->has('name'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('name') }}
-                                        </div>
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name') }}
+                                    </div>
                                     @endif
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control  {{ $errors->has('email') ? 'is-invalid' : '' }}" id="inputEmail" placeholder="Email" name="email" value="{{ Auth::user()->email }}">
-                                        
-                                    @if ($errors->has('email'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('email') }}
-                                    </div>
-                                @endif
+
+                                        @if ($errors->has('email'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('email') }}
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -104,23 +104,34 @@
                         </div>
                         <!-- tab password -->
                         <div class="tab-pane" id="password">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" method="POST" action="{{ route('update-password') }}">
+                                @csrf
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Kata Sandi Lama</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Kata Sandi Lama" disabled>
+                                        <input type="password" class="form-control" name="current_password" id="inputPassword" placeholder="Kata Sandi Lama" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputNewPassword" class="col-sm-2 col-form-label">Kata Sandi Baru</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" name="password" id="inputNewPassword" placeholder="Kata Sandi Baru">
+                                        <input type="password" class="form-control {{ $errors->has('new_password') ? 'is-invalid' : '' }}" name="new_password" id="inputNewPassword" placeholder="Kata Sandi Baru">
+                                        @if ($errors->has('new_password'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('new_password') }}
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="reinputNewPassword" class="col-sm-2 col-form-label">Ulangi Kata Sandi Baru</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" name="password" id="reinputNewPassword" placeholder="Ulangi Kata Sandi Baru">
+                                        <input type="password" class="form-control {{ $errors->has('new_confirm_password') ? 'is-invalid' : '' }}" name="new_confirm_password" id="reinputNewPassword" placeholder="Ulangi Kata Sandi Baru">
+                                        @if ($errors->has('new_confirm_password'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('new_confirm_password') }}
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -134,11 +145,18 @@
                         </div>
                         <!-- tab api key -->
                         <div class="tab-pane" id="apikey">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" method="POST" action="{{ route('update-apikey') }}">
+                                @csrf
                                 <div class="form-group row">
-                                    <label for="inputName" class="col-sm-2 col-form-label">Api Key</label>
+                                    <label for="inputApikey" class="col-sm-2 col-form-label">Api Key Lama</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                        <input type="text" class="form-control" id="inputApikey" placeholder="Api Key Lama" name="current_apikey" value="{{ Auth::user()->apikey }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputApikeyNew" class="col-sm-2 col-form-label">Api Key Baru</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputApikeyNew" placeholder="Api Key Baru" name="new_apikey">
                                     </div>
                                 </div>
                                 <div class="form-group row">
