@@ -19,5 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile', 'HomeController@profile')->name('profile');
+// validasi harus sudah login
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/profile', 'HomeController@profile')->name('profile');
+    // user edit with proses update  => namewebsite/profile/{nama user}
+    Route::get('profile/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+    Route::patch('profile/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+});
