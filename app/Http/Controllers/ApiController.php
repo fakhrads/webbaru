@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use App\User;
 class ApiController extends Controller
 {
     //
 
     public function cuaca(Request $req) {
-        $user = Auth::user();
-
-
+        
         $client = new \GuzzleHttp\Client(); 
         try {
             $response = $client->request('POST', 'http://api.openweathermap.org/data/2.5/weather', [
@@ -24,11 +23,15 @@ class ApiController extends Controller
             //    return $response->getBody()->getContents();
 
             //}
-            if($user->apikey != $req->input('key')) {
+
+            //searching apikey from user table
+            $apikey = User::where('apikey', '=', $req->input('key'))->first();
+            if($apikey === null) {
                 $data = [
                     'status' => 500,
                     'message' => 'Invalid Api Key'
                 ];
+                return $data;
             } else if($response->getStatusCode() == 200) {
                 $re = json_decode($response->getBody()->getContents(), true);
                 //storing in new json data
