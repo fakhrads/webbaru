@@ -26,5 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::post('/profile/update/email', 'UserController@email')->name('update-email');
+    Route::post('/profile/update/password', 'UserController@password')->name('update-password');
     Route::patch('/profile',  'UserController@update');
 });
