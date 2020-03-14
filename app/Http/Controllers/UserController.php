@@ -18,6 +18,23 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
+    public function email(Request $request)
+    {
+        $user = Auth::user();
+
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+        ]);
+
+        $user->name = request('name');
+        $user->email = request('email');
+
+        $user->save();
+
+        return redirect()->back()->with('success','Your Profile Has Been Changed');
+    }
+
     public function update(User $user)
     {
         $this->validate(request(), [
