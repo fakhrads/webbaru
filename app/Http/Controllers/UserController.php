@@ -52,6 +52,22 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Your Profile Has Been Changed');
     }
 
+    public function apikey(Request $request)
+    {
+        $user = Auth::user();
+
+        $this->validate(request(), [
+            'current_apikey' => $user->apikey,
+            'new_apikey' => 'required|min:10|max:10',
+        ]);
+
+        $user->apikey = request('new_apikey');
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Your Profile Has Been Changed');
+    }
+
     public function update(User $user)
     {
         $this->validate(request(), [

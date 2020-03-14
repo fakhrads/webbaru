@@ -145,11 +145,18 @@
                         </div>
                         <!-- tab api key -->
                         <div class="tab-pane" id="apikey">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" method="POST" action="{{ route('update-apikey') }}">
+                                @csrf
                                 <div class="form-group row">
-                                    <label for="inputName" class="col-sm-2 col-form-label">Api Key</label>
+                                    <label for="inputApikey" class="col-sm-2 col-form-label">Api Key Lama</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                        <input type="text" class="form-control" id="inputApikey" placeholder="Api Key Lama" name="current_apikey" value="{{ Auth::user()->apikey }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputApikeyNew" class="col-sm-2 col-form-label">Api Key Baru</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputApikeyNew" placeholder="Api Key Baru" name="new_apikey">
                                     </div>
                                 </div>
                                 <div class="form-group row">
