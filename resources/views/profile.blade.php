@@ -107,6 +107,7 @@
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="InputImage">
                                                 <label class="custom-file-label" for="InputImage">Pilih file</label>
+                                                <span class="text-danger">{{ $errors->first('title') }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -241,5 +242,48 @@
 @section('js')
 <script>
     console.log('Hi!');
+
+    // awal script gambar
+    $(document).ready(function(e) {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#InputImage').change(function() {
+
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#image_preview_container').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+        $('#upload_image_form').submit(function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('save-photo')}}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    this.reset();
+                    alert('Image has been uploaded successfully');
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    });
+    // end script gambar
 </script>
 @stop
