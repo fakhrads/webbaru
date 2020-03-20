@@ -20,7 +20,7 @@
 
                     <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
 
-                    <p class="text-muted text-center">Software Engineer</p>
+                    <p class="text-muted text-center">@username</p>
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
@@ -73,6 +73,12 @@
                             <form class="form-horizontal" method="POST" action="{{ route('update-userinfo') }}">
                                 @csrf
                                 <div class="form-group row">
+                                    <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputUsername" placeholder="Masukkan Username Anda" name="username" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputName" placeholder="Masukkan Nama Anda" name="name" value="{{ Auth::user()->name }}">
@@ -81,7 +87,6 @@
                                 <div class="form-group row">
                                     <label for="inputGender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                                     <div class="col-sm-10">
-                                        <!-- <input type="text" class="form-control" id="inputGender" placeholder="Jenis Kelamin" name="gender" value="{{ Auth::user()->name }}"> -->
                                         <select class="form-control" name="gender" style="max-width:20%;">
                                             <option disabled>Pilih Gender</option>
                                             <!-- foreach data gender dinamik -->
@@ -93,6 +98,20 @@
                                     <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
                                         <textarea class="form-control" rows="3" id="inputAlamat" name="alamat" placeholder="Masukkan Alamat Anda"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputImage" class="col-sm-2 col-form-label">Gambar</label>
+                                    <div class="col-sm-4">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="InputImage">
+                                                <label class="custom-file-label" for="InputImage">Pilih file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-2">
+                                        <img id="image_preview_container" src="https://demo.w3path.com/laravel/public/image/image-preview.png" alt="preview image" style="max-height: 150px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
