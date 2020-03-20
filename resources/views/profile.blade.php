@@ -105,14 +105,15 @@
                                     <div class="col-sm-4">
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="InputImage">
+                                                <input type="file" name="gambar" class="custom-file-input" id="InputImage">
                                                 <label class="custom-file-label" for="InputImage">Pilih file</label>
                                                 <span class="text-danger">{{ $errors->first('title') }}</span>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-12 mb-2">
-                                        <img id="image_preview_container" src="https://demo.w3path.com/laravel/public/image/image-preview.png" alt="preview image" style="max-height: 150px;">
+                                        <img id="image_preview_container" style="max-height: 150px;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -127,17 +128,6 @@
                         <div class="tab-pane" id="email">
                             <form class="form-horizontal" method="POST" action="{{ route('update-email') }}">
                                 @csrf
-                                <!-- <div class="form-group row">
-                                    <label for="InputName" class="col-sm-2 col-form-label">Nama</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}" id="InputName" placeholder="Name" name="name" value="{{ Auth::user()->name }}">
-                                    </div>
-                                    @if ($errors->has('name'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('name') }}
-                                    </div>
-                                    @endif
-                                </div> -->
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
