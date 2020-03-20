@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\Exception;
 class ApiController extends Controller
 {
     //
@@ -13,7 +16,7 @@ class ApiController extends Controller
         
         $client = new \GuzzleHttp\Client(); 
         try {
-            $response = $client->request('POST', 'http://api.openweathermap.org/data/2.5/weather', [
+            $response = $client->request('GET', 'http://api.openweathermap.org/data/2.5/weather', [
                 'query' => [
                     'q' => $req->input('kota'),
                     'appid' => 'df307b186bbec0a070108a1637c7126c'    
@@ -46,6 +49,14 @@ class ApiController extends Controller
             } 
 
         } catch (ClientException $e) {
+            if ($e->getResponse()->getStatusCode() == '400') {
+                $errorJson = json_decode($e->getResponse()->getBody(), true);
+                $data = [
+                    'status' => 400,
+                    'message' => $errorJson['message']
+                ];
+                return $data;
+            }
             $errorJson = json_decode($e->getResponse()->getBody(), true);
             $data = [
                 'status' => 400,
@@ -53,12 +64,14 @@ class ApiController extends Controller
             ];
             return $data;
         } catch (RequestException $e) {
-            $errorJson = json_decode($e->getResponse()->getBody(), true);
-            $data = [
-                'status' => 400,
-                'message' => $errorJson['message']
-            ];
-            return $data;
+            if ($e->getResponse()->getStatusCode() == '400') {
+                $errorJson = json_decode($e->getResponse()->getBody(), true);
+                $data = [
+                    'status' => 400,
+                    'message' => $errorJson['message']
+                ];
+                return $data;
+            }
         } catch (Exception $e) {
             $data = [
                 'status' => 400,
@@ -70,7 +83,7 @@ class ApiController extends Controller
 
     public function corona(Request $req) {
         $apikey = User::where('apikey', '=', $req->input('key'))->first();
-        if($apikey === null) {
+        if($apikey === null or $req->input('key') === null) {
             $data = [
                 'status' => 500,
                 'message' => 'Invalid Api Key'

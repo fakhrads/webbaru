@@ -32,7 +32,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/profile',  'UserController@update');
 });
 
+Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function() {
+    Route::get('/api', 'ApiDataController@index')->name('admin/api');
+    Route::post('/api/create', 'ApiDataController@store')->name('api/create');
+});
+
 //Route untuk API
 
 Route::get('/cuaca','ApiController@cuaca');
 Route::get('/corona','ApiController@corona');
+Route::post('dynamic-field/insert', 'ApiDataController@insert')->name('dynamic-field.insert');
