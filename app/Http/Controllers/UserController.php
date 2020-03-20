@@ -12,10 +12,27 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function edit(User $user)
     {
         $user = Auth::user();
         return view('users.edit', compact('user'));
+    }
+
+    public function userinfo(Request $request)
+    {
+        $user = Auth::user();
+        // validasi file
+        $this->validate(request(), [
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user->name = request('name');
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Your Profile Has Been Changed');
     }
 
     public function email(Request $request)

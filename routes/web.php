@@ -26,19 +26,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::get('/api-documentation', 'HomeController@apidoc')->name('apidoc');
+    Route::post('/profile/update/userinfo', 'UserController@userinfo')->name('update-userinfo');
     Route::post('/profile/update/email', 'UserController@email')->name('update-email');
     Route::post('/profile/update/password', 'UserController@password')->name('update-password');
     Route::post('/profile/update/apikey', 'UserController@apikey')->name('update-apikey');
     Route::patch('/profile',  'UserController@update');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
     Route::get('/api', 'ApiDataController@index')->name('admin/api');
     Route::post('/api/create', 'ApiDataController@store')->name('api/create');
 });
 
 //Route untuk API
 
-Route::get('/cuaca','ApiController@cuaca');
-Route::get('/corona','ApiController@corona');
+Route::get('/cuaca', 'ApiController@cuaca');
+Route::get('/corona', 'ApiController@corona');
 Route::post('dynamic-field/insert', 'ApiDataController@insert')->name('dynamic-field.insert');

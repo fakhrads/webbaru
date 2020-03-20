@@ -49,7 +49,8 @@
             <div class="card">
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#email" data-toggle="tab">Email</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#userinfo" data-toggle="tab">User Info</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#email" data-toggle="tab">Email</a></li>
                         <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password</a></li>
                         <li class="nav-item"><a class="nav-link" href="#apikey" data-toggle="tab">Api Key</a></li>
                     </ul>
@@ -67,11 +68,46 @@
                     </div>
                     @endif
                     <div class="tab-content">
-                        <!-- tab email -->
-                        <div class="tab-pane active" id="email">
-                            <form class="form-horizontal" method="POST" action="{{ route('update-email') }}">
+                        <!-- tab user info -->
+                        <div class="tab-pane active" id="userinfo">
+                            <form class="form-horizontal" method="POST" action="{{ route('update-userinfo') }}">
                                 @csrf
                                 <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputName" placeholder="Masukkan Nama Anda" name="name" value="{{ Auth::user()->name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputGender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                    <div class="col-sm-10">
+                                        <!-- <input type="text" class="form-control" id="inputGender" placeholder="Jenis Kelamin" name="gender" value="{{ Auth::user()->name }}"> -->
+                                        <select class="form-control" name="gender" style="max-width:20%;">
+                                            <option disabled>Pilih Gender</option>
+                                            <!-- foreach data gender dinamik -->
+                                            <option>xx</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="3" id="inputAlamat" name="alamat" placeholder="Masukkan Alamat Anda"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-danger">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- tab email -->
+                        <div class="tab-pane" id="email">
+                            <form class="form-horizontal" method="POST" action="{{ route('update-email') }}">
+                                @csrf
+                                <!-- <div class="form-group row">
                                     <label for="InputName" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}" id="InputName" placeholder="Name" name="name" value="{{ Auth::user()->name }}">
@@ -81,7 +117,7 @@
                                         {{ $errors->first('name') }}
                                     </div>
                                     @endif
-                                </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">

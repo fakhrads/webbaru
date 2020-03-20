@@ -179,7 +179,7 @@ return [
 
     'password_email_url' => 'password/email',
 
-    'profile_url' => 'true',
+    'profile_url' => 'profile',
 
     /*
     |--------------------------------------------------------------------------
@@ -236,7 +236,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        
+
         [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
