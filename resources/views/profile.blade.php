@@ -67,6 +67,8 @@
                         {{ session('status') }}
                     </div>
                     @endif
+
+                    @foreach($data as $user)
                     <div class="tab-content">
                         <!-- tab user info -->
                         <div class="tab-pane active" id="userinfo">
@@ -97,7 +99,7 @@
                                 <div class="form-group row">
                                     <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" rows="3" id="inputAlamat" name="alamat" placeholder="Masukkan Alamat Anda"></textarea>
+                                        <textarea class="form-control" rows="3" id="inputAlamat" name="alamat" placeholder="Masukkan Alamat Anda">{{ $user->alamat }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -220,6 +222,7 @@
                             </form>
                         </div>
                     </div>
+                    @endforeach
                     <!-- /.tab-content -->
                 </div><!-- /.card-body -->
             </div>
