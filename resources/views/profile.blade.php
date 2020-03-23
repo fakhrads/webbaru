@@ -111,9 +111,11 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-12 mb-2">
+                                </div>
+                                <div class="form-group">
+                                    <div class="offset-sm-2 col-sm-10">
                                         <img id="image_preview_container" style="max-height: 150px;">
+                                        <img id="image_preview_container2" style="max-height: 150px; border-radius: 50%;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -247,6 +249,7 @@
             let reader = new FileReader();
             reader.onload = (e) => {
                 $('#image_preview_container').attr('src', e.target.result);
+                $('#image_preview_container2').attr('src', e.target.result);
             }
             reader.readAsDataURL(this.files[0]);
 
