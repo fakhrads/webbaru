@@ -114,8 +114,8 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="offset-sm-2 col-sm-10">
-                                        <img id="image_preview_container" style="max-height: 150px;">
-                                        <img id="image_preview_container2" style="max-height: 150px; border-radius: 50%;">
+                                        <img id="image_preview_container" style="height: 150px; width: 150px;">
+                                        <img id="image_preview_container2" style="height: 150px; width: 150px; border-radius: 50%;">
                                     </div>
                                 </div>
                                 <div class="form-group row">
