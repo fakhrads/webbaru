@@ -155,7 +155,7 @@
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Kata Sandi Lama</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" name="current_password" id="inputPassword" placeholder="Kata Sandi Lama" disabled>
+                                        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Masukkan Kata Sandi Lama">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -275,5 +275,7 @@
         });
     });
     // end script gambar
+
+    // toggle visibility
 </script>
 @stop
