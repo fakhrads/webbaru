@@ -196,14 +196,18 @@
                             <form class="form-horizontal" method="POST" action="{{ route('update-apikey') }}">
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="inputApikey" class="col-sm-2 col-form-label">Api Key Lama</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputApikey" placeholder="Api Key Lama" name="current_apikey" value="{{ Auth::user()->apikey }}" disabled>
+                                    <label for="Apiold" class="col-sm-2 col-form-label">Api Key Lama</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="Apiold" placeholder="Api Key Lama" name="current_apikey" value="{{ Auth::user()->apikey }}" disabled>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-outline-info" onclick="myFunction()">Show</button>
+                                        <button type="button" class="btn btn-outline-success copy-text" data-clipboard-target="#Apiold" data-toggle="tooltip" data-placement="top" title="Copy API">Copy</button>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputApikeyNew" class="col-sm-2 col-form-label">Api Key Baru</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputApikeyNew" placeholder="Api Key Baru" name="new_apikey">
                                     </div>
                                 </div>
@@ -279,6 +283,14 @@
     });
     // end script gambar
 
+    // copy text button
+    $(function() {
+        new Clipboard('.copy-text');
+    });
+
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
     // toggle visibility
 </script>
 @stop
