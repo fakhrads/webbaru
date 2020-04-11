@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 
 // validasi harus sudah login
 Route::group(['middleware' => 'auth'], function () {
