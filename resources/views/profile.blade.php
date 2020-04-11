@@ -15,7 +15,7 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="https://i.pinimg.com/236x/67/fc/a5/67fca5aabcffa18393fb3eb4e4dd4b0d.jpg" alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle" src="ahttps://i.pinimg.com/236x/67/fc/a5/67fca5aabcffa18393fb3eb4e4dd4b0d.jpg" alt="User profile picture">
                     </div>
 
                     <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
@@ -223,7 +223,7 @@
                         </div>
                     </div>
                     @endforeach
-                    <!-- /.tab-content -->
+                    <!-- /tab-content -->
                 </div><!-- /.card-body -->
             </div>
             <!-- /.nav-tabs-custom -->

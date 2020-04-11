@@ -35,7 +35,8 @@ class HomeController extends Controller
             ->join('users_details', 'users.id', '=', 'users_details.user_id')
             ->where('users.id', Auth::user()->id)
             ->get();
-        // var_dump($user);
+        // var_dump($data);
+        // dd($data);
         return view('profile', compact('data'));
     }
 
